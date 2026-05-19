@@ -1,0 +1,16 @@
+# Python cache files
+__pycache__/
+*.pyc
+
+# Jupyter notebook checkpoints
+.ipynb_checkpoints/
+
+# Virtual environments
+.venv/
+
+# Build / system files (THIS FIXES YOUR ERROR)
+.gradle/
+build/
+
+# OS junk
+.DS_Store
