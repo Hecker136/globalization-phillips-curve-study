@@ -14,3 +14,15 @@ build/
 
 # OS junk
 .DS_Store
+
+# LaTeX auxiliary files
+*.aux
+*.log
+*.out
+*.toc
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+
+# Build outputs (optional decision)
+*.pdf
