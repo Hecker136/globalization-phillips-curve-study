@@ -1,7 +1,6 @@
 import pandas as pd 
 import numpy as np
 import statsmodels.api as sm
-import matplotlib.pyplot as plt
 
 unemployment = pd.read_csv("C:/Users/brend/Downloads/UNRATE.csv")
 inflation = pd.read_csv("C:/Users/brend/Downloads/CPIAUCSL.csv")

@@ -9,9 +9,9 @@ interest = pd.read_csv("C:/Users/brend/Downloads/FEDFUNDS.csv")
 
 unemployment.columns = ["DATE", "UNRATE"]
 inflation.columns = ["DATE", "CPI"]
-interest.columns = ["DATE", "FEDFUNDS"]
 
-data = unemployment.merge(inflation, on="DATE").merge(interest, on="DATE")
+
+data = unemployment.merge(inflation, on="DATE")
 
 data["INFLATION"] = data["CPI"].pct_change(periods=12, fill_method=None) * 100
 data = data.dropna()
@@ -20,7 +20,7 @@ data["DATE"] = pd.to_datetime(data["DATE"])
 data["year"] = data["DATE"].dt.year
 
 def get_period(start, end):
-    return data[(data["year"] >= start) & (data["year"] < end)][["UNRATE", "INFLATION", "FEDFUNDS"]].dropna()
+    return data[(data["year"] >= start) & (data["year"] < end)][["UNRATE", "INFLATION"]].dropna()
 
 period1 = get_period(1960, 1980)
 period2 = get_period(1980, 2000)
