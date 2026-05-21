@@ -5,11 +5,9 @@ import matplotlib.pyplot as plt
 
 unemployment = pd.read_csv("C:/Users/brend/Downloads/UNRATE.csv")
 inflation = pd.read_csv("C:/Users/brend/Downloads/CPIAUCSL.csv")
-interest = pd.read_csv("C:/Users/brend/Downloads/FEDFUNDS.csv")
 
 unemployment.columns = ["DATE", "UNRATE"]
 inflation.columns = ["DATE", "CPI"]
-
 
 data = unemployment.merge(inflation, on="DATE")
 
