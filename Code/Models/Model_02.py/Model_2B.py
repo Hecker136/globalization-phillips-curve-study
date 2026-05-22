@@ -1,44 +1,6 @@
-import pandas as pd 
-import numpy as np
-import statsmodels.api as sm
+import pandas as pd
 
-unemployment = pd.read_csv("C:/Users/brend/Downloads/UNRATE.csv")
-inflation = pd.read_csv("C:/Users/brend/Downloads/CPIAUCSL.csv")
-
-unemployment.columns = ["DATE", "UNRATE"]
-inflation.columns = ["DATE", "CPI"]
-
-data = unemployment.merge(inflation, on="DATE")
-
-data["INFLATION"] = data["CPI"].pct_change(periods=12, fill_method=None) * 100
-data = data.dropna()
-
-data["DATE"] = pd.to_datetime(data["DATE"])
-data["year"] = data["DATE"].dt.year
-
-def get_period(start, end):
-    return data[(data["year"] >= start) & (data["year"] < end)][["UNRATE", "INFLATION"]].dropna()
-
-period1 = get_period(1960, 1980)
-period2 = get_period(1980, 2000)
-period3 = get_period(2000, 2026)
-
-Export = pd.read_csv("C:/Users/brend/Downloads/EXPGS.csv")
-Import = pd.read_csv("C:/Users/brend/Downloads/IMPGS.csv")
-GDP = pd.read_csv("C:/Users/brend/Downloads/GDP.csv")
-
-Export.columns = ["DATE", "EXPGS"]
-Import.columns = ["DATE", "IMPGS"]
-GDP.columns = ["DATE", "GDP"]
-
-trade = Export.merge(Import, on="DATE").merge(GDP, on="DATE")
-
-trade["TRADE"] = trade["EXPGS"] + trade["IMPGS"]
-trade["TRADE_GDP"] = trade["TRADE"] / trade["GDP"] * 100
-
-trade["DATE"] = pd.to_datetime(trade["DATE"])
-
-df = trade.merge(data, on="DATE", how="inner")
+df = pd.read_csv("C:/phillips_project/data/processed/clean_data.csv")
 
 def inputs():
   print("OLS regression model (1954-2026)")
@@ -73,7 +35,7 @@ df["TRADE_GDP_c"] = df["TRADE_GDP"] - df["TRADE_GDP"].mean()
 
 df["UNRATE_x_TRADE"] = df["UNRATE_c"] * df["TRADE_GDP_c"]
 
-df["INFLATION"] = df["INFLATION"] - 2
+df["INFLATION"] = df["INFLATION"] - df["INFLATION"].mean()
 
 df["INFLATION_LAGGED"] = df["INFLATION"].shift(1)
 

@@ -1,45 +1,6 @@
-import pandas as pd 
-import numpy as np
-import statsmodels.api as sm
-import matplotlib.pyplot as plt
+import pandas as pd
 
-unemployment = pd.read_csv("C:/Users/brend/Downloads/UNRATE.csv")
-inflation = pd.read_csv("C:/Users/brend/Downloads/CPIAUCSL.csv")
-
-unemployment.columns = ["DATE", "UNRATE"]
-inflation.columns = ["DATE", "CPI"]
-
-data = unemployment.merge(inflation, on="DATE")
-
-data["INFLATION"] = data["CPI"].pct_change(periods=12, fill_method=None) * 100
-data = data.dropna()
-
-data["DATE"] = pd.to_datetime(data["DATE"])
-data["year"] = data["DATE"].dt.year
-
-def get_period(start, end):
-    return data[(data["year"] >= start) & (data["year"] < end)][["UNRATE", "INFLATION"]].dropna()
-
-period1 = get_period(1960, 1980)
-period2 = get_period(1980, 2000)
-period3 = get_period(2000, 2026)
-
-Export = pd.read_csv("C:/Users/brend/Downloads/EXPGS.csv")
-Import = pd.read_csv("C:/Users/brend/Downloads/IMPGS.csv")
-GDP = pd.read_csv("C:/Users/brend/Downloads/GDP.csv")
-
-Export.columns = ["DATE", "EXPGS"]
-Import.columns = ["DATE", "IMPGS"]
-GDP.columns = ["DATE", "GDP"]
-
-trade = Export.merge(Import, on="DATE").merge(GDP, on="DATE")
-
-trade["TRADE"] = trade["EXPGS"] + trade["IMPGS"]
-trade["TRADE_GDP"] = trade["TRADE"] / trade["GDP"] * 100
-
-trade["DATE"] = pd.to_datetime(trade["DATE"])
-
-df = trade.merge(data, on="DATE", how="inner")
+df = pd.read_csv("C:/phillips_project/data/processed/clean_data.csv")
 
 def inputs():
   print("OLS regression model (1954-2026)")
@@ -150,36 +111,4 @@ plt.legend()
 plt.savefig("phillips_curve_interaction.png",
             dpi=300,
             bbox_inches='tight')
-plt.show()
-
-plt.figure(figsize=(8,6))
-
-median_trade = df["TRADE_GDP"].median()
-
-low_trade = df[df["TRADE_GDP"] < median_trade]
-high_trade = df[df["TRADE_GDP"] >= median_trade]
-
-plt.scatter(
-    low_trade["UNRATE"],
-    low_trade["INFLATION"],
-    label="Low Globalization"
-)
-
-plt.scatter(
-    high_trade["UNRATE"],
-    high_trade["INFLATION"],
-    label="High Globalization"
-)
-
-plt.title("Phillips Curve Under Different Globalization Levels")
-
-plt.xlabel("Unemployment Rate")
-plt.ylabel("Inflation (%)")
-
-plt.legend()
-
-plt.tight_layout()
-
-plt.savefig("../outputs/figures/globalization_phillips_curve.png")
-
 plt.show()
