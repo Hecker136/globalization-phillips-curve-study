@@ -30,6 +30,16 @@ df = df.merge(exports, on="DATE")
 df = df.merge(gdp, on="DATE")
 
 # =========================
+# Normalize year column and convert to datetime
+# =========================
+
+df["DATE"] = pd.to_datetime(df["DATE"])
+df["year"] = df["DATE"].dt.year
+
+def get_period(start, end):
+    return df[(df["year"] >= start) & (df["year"] < end)][["UNRATE", "INFLATION", "MICH"]].dropna()
+
+# =========================
 # CREATE VARIABLES
 # =========================
 

@@ -1,4 +1,7 @@
 import pandas as pd
+import statsmodels.api as sm
+import numpy as np
+import matplotlib.pyplot as plt
 
 df = pd.read_csv("C:/phillips_project/data/processed/clean_data.csv")
 
