@@ -18,32 +18,38 @@ This paper studies whether globalization weakens the Phillips Curve relationship
 
 \section{Introduction}
 
-The Phillips Curve is the theory that unemployment and inflation are negatively correlated. Modern-day economists care because this relationship has ripple effects everywhere, from Fed policy to inflation control and employment. The present issue is that the relationship may have weakened due to a variety of reasons. Most of them have to do with how globalization affects prices in an economy. My research question is does increasing trade openness change how powerful the Phillips Curve is? My model uses regression to try to tell the relationship between trade to GDP and the unemployment rate.
+The Phillips Curve is the theory that unemployment and inflation are negatively correlated. Modern-day economists care because this relationship has ripple effects everywhere, from Fed policy to inflation control and employment. The present issue is that the relationship may have weakened due to a variety of reasons. Most of them have to do with how globalization affects prices in an economy. My research question is does increasing trade openness change how powerful the Phillips Curve is? My first model uses regression to try to tell the relationship between trade to GDP and the unemployment rate. My second model does the same thing excepts it replaces inflation with the gap between inflation and expectations.
 
 \section{Economic Background}
 
 Inflation is the year over year change in the CPI. The CPI uses a basket of goods and services to see the level of the price in an economy. Expectations are what the American consumers expect inflation to be (done through a survey). The inflation gap is measured as:
-$$\pi-\pi^e$$
-Unemployment is the percent of the labor force that is looking for work but can not find it. Trade openness is measured as:
+$$\pi_t-\pi^e_t$$
+Where $\pi_t$ is the current inflation, $\pi^e_t$ are the current expectations of inflation. Unemployment is the percent of the labor force that is looking for work but can not find it. Trade openness is measured as:
 $$(\frac{Imports+Exports}{GDP})*100$$
-This measures the amount of economic activity that is due to trade. This is used as a proxy for globalization as it measures the percent of the economy that is reliant on trade. Lagged inflation is inflation shifted one month. This is used to see how much of today's inflation is depended on the inflation of the past. This is important because it shows how inflation expectations effect inflation in the long-term. The equation for the Phillips Curve is 
+This measures the amount of economic activity that is due to trade. This is used as a proxy for globalization as it measures the percent of the economy that is reliant on trade. Lagged inflation is inflation shifted one month. This is used to see how much of today's inflation is depended on the inflation of the past. This is important because it shows how inflation expectations affect inflation in the long-term. The equation for the Phillips Curve is 
 $$
 \pi_t=\pi^e_t-a(u_t-u_n)+v_t
 $$
-Where $\pi_t$ is the current inflation, $\pi^e_t$ is the current expectations of inflation, a is the sensitivity of the Phillips Curve, $u_t$ and $u_n$ are the current unemployment and the natural rate of unemployment respectively; And $v_t$ are shocks to the economy (oil shocks etc..)
+a is the sensitivity of the Phillips Curve, $u_t$ and $u_n$ are the current unemployment and the natural rate of unemployment respectively; And $v_t$ are shocks to the economy (oil shocks etc..)
 \section{Data}
 
-For inflation in model 1, I used the year over year change in the CPI. For inflation in model 2, I used inflation (from model 1) - expectations.For the unemployment source I used the U.S. unemployment rate. For the trade term I used trade to GDP. For the lagged Inflation I took the previous period of inflation to measure the persistence. I chose these as they are standard macro variables used in assessing the Phillips Curve.
+For inflation in model 1, I used the year over year change in the CPI. For inflation in model 2, I did the inflation (from model 1) - expectations. For the unemployment source I decided to use the U.S. unemployment rate. For the trade term I picked trade to GDP. For the lagged Inflation I took the previous period of inflation to measure the persistence. All of these are known as CPIAUCSL(inflation), MICH(expectations), UNRATE(unemployment rate), EXPTS and IMPTS (added together are trade), GDP(size of the economy). I chose these as they are standard macro variables used in assessing the Phillips Curve.
 
 \section{Methodology}
 
-For my regression method I used OLS. The purpose was the analyze the relationship between inflation, the unemployment rate and how globalized an economy is. The interaction term tests to what degree globalization effects the Phillips Curve. The equation for my model is:
+For my regression method I chose OLS. The purpose was the analyze the relationship between inflation, the unemployment rate and how globalized an economy is. The interaction term tests to what degree globalization effects the Phillips Curve. The equation for my first model is:
 \begin{align*}
 \text{Inflation}_t =
 & \ \beta_0 + \beta_1 \text{Unemployment}_t + \beta_2 \text{Trade}_t \\
 & + \beta_3 \text{Interaction}_t + \beta_4 \text{Inflation}_{t-1} + \varepsilon_t
 \end{align*}
-This equation uses the betas as coefficients to measure the line of best fit. Each variables is multiplied by its beta and than the error is added to try to estimate the inflation.
+The equation for my second model is:
+\begin{align*}
+\text{Inflation Gap}_t =
+& \ \beta_0 + \beta_1 \text{Unemployment}_t + \beta_2 \text{Trade}_t \\
+& + \beta_3 \text{Interaction}_t + \varepsilon_t
+\end{align*}
+This equation uses the betas as coefficients to measure the line of best fit. Each variable is multiplied by its beta and then the error is added to try to estimate the inflation or inflation gap ($\pi_t-\pi_t^e$).
 \section{Results}
 
 \begin{table}[ht]
@@ -74,11 +80,11 @@ Lagged Inflation & 0.970 & \textbf{0.000} & N/A & N/A\\
     \label{fig:interaction_phillips}
 \end{figure}
 
-The unemployment is negative and statistically relevant meaningly that the Phillips Curve does still exist but maybe just weaker. The lagged inflation is very close to 1 and has a p-value less than 0.05 meaning inflation is very dependent on inflation from the past. The trade term is positive but not statistically significant so that term can be ignored. The trade times unemployment rate though yielded good results. The interaction term is positive meaning globalization does flatten the Phillips Curve, yet the p-value is 0.001 meaning it is statistically significant. In model 2 most of the variables are statistically insignificant. Trade-GDP is not and has a p-value < 0.01. Meaning that Trade-GDP when accounted for expectations is significant. This means that when Trade-GDP rises the inflation gap falls.
+The unemployment is negative and statistically significant, meaningly that the Phillips Curve does still exist but maybe just weaker. The lagged inflation is very close to 1 and has a p-value less than 0.05 meaning inflation is very dependent on inflation from the past. The trade term is positive but not statistically significant so that term can be ignored. The trade times unemployment rate though yielded good results. The interaction term is positive meaning globalization does flatten the Phillips Curve, and the p-value is 0.001 meaning it is statistically significant. In model 2 most of the variables are statistically insignificant. The reason for this is once expectations are accounted for and lagged inflation is removed, all that is left is the short-term trends which makes unemployment harder to track. Trade-GDP is not and has a p-value less than 0.01. Meaning that Trade-GDP when accounted for expectations is significant. This means that when Trade-GDP rises the inflation is less then what consumers expect it be.
 
 \section{Limitations}
 
-Unfortunately there are limitations. There are missing variables such as expectations for inflation and unemployment along with monetary and fiscal policy that could alter the Phillips Curve. There could be omitted variable bias which is when there are variables that are not in a model but affect The first model. The economy also structurally changes over time which could affect the Phillips Curve. This is also only a simplified model of the economy, this model doesn't take in enough factors to better represent the economy. The trade to GDP doesn't take into account re-exports which could artificially boosting the trade to GDP number. For the expectations it is only a survey and consumers could have different buying patterns then those reported. Which could affect the inflation gap.
+Unfortunately there are limitations. There are missing variables such as expectations for unemployment along with monetary and fiscal policy that could alter the Phillips Curve. There could be omitted variable bias which is when there are variables that are not in a model but affect the models. The economy also structurally changes over time which could affect the Phillips Curve. This is also only a simplified model of the economy, this model doesn't take in enough factors to better represent the economy. The trade to GDP doesn't take into account re-exports which could artificially boosting the trade to GDP number. For the expectations it is only a survey and consumers could have different buying patterns than those reported. Which could affect the inflation gap.
 
 \section{Conclusion}
 

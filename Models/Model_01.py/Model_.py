@@ -151,3 +151,35 @@ plt.savefig("phillips_curve_interaction.png",
             dpi=300,
             bbox_inches='tight')
 plt.show()
+
+plt.figure(figsize=(8,6))
+
+median_trade = df["TRADE_GDP"].median()
+
+low_trade = df[df["TRADE_GDP"] < median_trade]
+high_trade = df[df["TRADE_GDP"] >= median_trade]
+
+plt.scatter(
+    low_trade["UNRATE"],
+    low_trade["INFLATION"],
+    label="Low Globalization"
+)
+
+plt.scatter(
+    high_trade["UNRATE"],
+    high_trade["INFLATION"],
+    label="High Globalization"
+)
+
+plt.title("Phillips Curve Under Different Globalization Levels")
+
+plt.xlabel("Unemployment Rate")
+plt.ylabel("Inflation (%)")
+
+plt.legend()
+
+plt.tight_layout()
+
+plt.savefig("../outputs/figures/globalization_phillips_curve.png")
+
+plt.show()
