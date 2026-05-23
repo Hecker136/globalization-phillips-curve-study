@@ -82,9 +82,54 @@ Lagged Inflation & 0.970 & \textbf{0.000} & N/A & N/A\\
 
 The unemployment is negative and statistically significant, meaningly that the Phillips Curve does still exist but maybe just weaker. The lagged inflation is very close to 1 and has a p-value less than 0.05 meaning inflation is very dependent on inflation from the past. The trade term is positive but not statistically significant so that term can be ignored. The trade times unemployment rate though yielded good results. The interaction term is positive meaning globalization does flatten the Phillips Curve, and the p-value is 0.001 meaning it is statistically significant. In model 2 most of the variables are statistically insignificant. The reason for this is once expectations are accounted for and lagged inflation is removed, all that is left is the short-term trends which makes unemployment harder to track. Trade-GDP is not and has a p-value less than 0.01. Meaning that Trade-GDP when accounted for expectations is significant. This means that when Trade-GDP rises the inflation is less then what consumers expect it be.
 
-\section{Limitations}
+\section{Diagnostics and Limitations}
 
-Unfortunately there are limitations. There are missing variables such as expectations for unemployment along with monetary and fiscal policy that could alter the Phillips Curve. There could be omitted variable bias which is when there are variables that are not in a model but affect the models. The economy also structurally changes over time which could affect the Phillips Curve. This is also only a simplified model of the economy, this model doesn't take in enough factors to better represent the economy. The trade to GDP doesn't take into account re-exports which could artificially boosting the trade to GDP number. For the expectations it is only a survey and consumers could have different buying patterns than those reported. Which could affect the inflation gap.
+I ran three diagnostic tests. A QQ plot, residuals histogram and a residuals vs fitted diagram. These 3 tests test for the normality and linearity in the model. All three plots came back successful. The first one is the QQ plot:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]
+    {qq_plot.png}
+
+    \caption{
+    QQ-Plot of two different quartiles. Along with a diagonal line to test for normality in the sample. A diagonal line of blue dots means perfect normality with everything else indicating non-normality.
+    }
+
+    \label{fig:qq_plot}
+\end{figure}
+
+This plot shows how the blue dots closely follow the diagonal line indicating that the sample quartile is normal and the regression is most likely reliable. The second figure is a residuals histogram:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]
+    {residuals_histogram.png}
+
+    \caption{
+    A residuals-histogram which checks for how normal the residuals are distrusted. The closer to a normal distribution the more normal the data is.
+    }
+
+    \label{fig:residuals_histogram}
+\end{figure}
+
+This figure shows how the residuals follow a normal distribution indicating that the data is reliable and normal. The final image is a residuals vs fitted plot:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]
+    {residuals_vs_fitted.png}
+
+    \caption{
+    A residuals vs fitted plot which checks for linearity in the sample. The more random and closer to the center the better. dots over the horizontal line were underestimated, while the dots under were overestimated.
+    }
+
+    \label{fig:residuals_vs_fitted}
+\end{figure}
+
+This image shows the residuals vs the fitted values. The dots indicate what the actual and predicted value was. The closer to the center and the more spread out the data the more reliable the regression model is. 
+\\
+\\
+Unfortunately there are also limitations. There are missing variables such as expectations for unemployment along with monetary and fiscal policy that could alter the Phillips Curve. There could be omitted variable bias which is when there are variables that are not in a model but affect the models. The economy also structurally changes over time which could affect the Phillips Curve. This is also only a simplified model of the economy, this model doesn't take in enough factors to better represent the economy. The trade to GDP doesn't take into account re-exports which could artificially boosting the trade to GDP number. For the expectations it is only a survey and consumers could have different buying patterns than those reported. Which could affect the inflation gap.
 
 \section{Conclusion}
 
