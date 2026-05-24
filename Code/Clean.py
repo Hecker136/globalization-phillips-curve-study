@@ -10,7 +10,6 @@ unrate = pd.read_csv("C:/phillips_project/Data/Raw/UNRATE.csv")
 imports = pd.read_csv("C:/phillips_project/Data/Raw/IMPGS.csv")
 exports = pd.read_csv("C:/phillips_project/Data/Raw/EXPGS.csv")
 gdp = pd.read_csv("C:/phillips_project/Data/Raw/GDP.csv")
-mich = pd.read_csv("C:/phillips_project/Data/Raw/MICH.csv")
 
 # RENAME
 cpi.columns = ["DATE", "CPI"]
@@ -18,14 +17,12 @@ unrate.columns = ["DATE", "UNRATE"]
 imports.columns = ["DATE", "IMPORTS"]
 exports.columns = ["DATE", "EXPORTS"]
 gdp.columns = ["DATE", "GDP"]
-mich.columns = ["DATE", "MICH"]
 
 # MERGE
 df = cpi.merge(unrate, on="DATE") \
         .merge(imports, on="DATE") \
         .merge(exports, on="DATE") \
         .merge(gdp, on="DATE") \
-        .merge(mich, on="DATE")
 
 # SORT FIRST (CRITICAL)
 df["DATE"] = pd.to_datetime(df["DATE"])
