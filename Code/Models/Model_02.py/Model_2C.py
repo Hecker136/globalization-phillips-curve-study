@@ -32,13 +32,43 @@ input_1, input_2 = inputs()
 
 df = df[df["year"].between(input_1, input_2)]
 
-X = df[["UNRATE_c","TRADE_GDP_c", "UNRATE_x_TRADE", "INFLATION_LAGGED"]]
+df["UNRATE_c"] = df["UNRATE"] - df["UNRATE"].mean()
+df["TRADE_GDP_c"] = df["TRADE_GDP"] - df["TRADE_GDP"].mean()
+
+df["UNRATE_x_TRADE"] = df["UNRATE_c"] * df["TRADE_GDP_c"]
+
+X = df[["UNRATE_c","TRADE_GDP_c", "UNRATE_x_TRADE"]]
 X = sm.add_constant(X)
 
-y = df["INFLATION"]
+y = df["INFLATION"] - df["MICH"]
 
 model = sm.OLS(y, X).fit(
     cov_type="HAC",
     cov_kwds={"maxlags": 12}
 )
 print(model.summary())
+
+residuals = model.resid
+fitted = model.fittedvalues
+
+import matplotlib.pyplot as plt
+import statsmodels.api as sm
+
+sm.qqplot(residuals, line="45")
+plt.title("QQ Plot of Residuals")
+plt.show()
+
+plt.figure()
+plt.hist(residuals, bins=30, edgecolor="black")
+plt.title("Histogram of Residuals")
+plt.xlabel("Residual")
+plt.ylabel("Frequency")
+plt.show()
+
+plt.figure()
+plt.scatter(fitted, residuals, alpha=0.6)
+plt.axhline(0, color="red", linestyle="--")
+plt.title("Residuals vs Fitted Values")
+plt.xlabel("Fitted Values")
+plt.ylabel("Residuals")
+plt.show()

@@ -2,6 +2,7 @@ import pandas as pd
 import statsmodels.api as sm
 import numpy as np
 import matplotlib.pyplot as plt
+from statsmodels.tsa.stattools import adfuller
 
 # -----------------------------
 # LOAD DATA
@@ -84,6 +85,36 @@ model = sm.OLS(y, X).fit(
 )
 
 print(model.summary())
+
+adf_result = adfuller(model.resid)
+print("\nADF Test Results:")
+print(f"ADF Statistic: {adf_result[0]}")
+print(f"p-value: {adf_result[1]}")
+print("Critical Values:")
+for key, value in adf_result[4].items():
+    print(f"   {key}: {value}")
+
+residuals = model.resid
+fitted = model.fittedvalues
+
+sm.qqplot(residuals, line="45")
+plt.title("QQ Plot of Residuals")
+plt.show()
+
+plt.figure()
+plt.hist(residuals, bins=30, edgecolor="black")
+plt.title("Histogram of Residuals")
+plt.xlabel("Residual")
+plt.ylabel("Frequency")
+plt.show()
+
+plt.figure()
+plt.scatter(fitted, residuals, alpha=0.6)
+plt.axhline(0, color="red", linestyle="--")
+plt.title("Residuals vs Fitted Values")
+plt.xlabel("Fitted Values")
+plt.ylabel("Residuals")
+plt.show()
 
 # -----------------------------
 # GRAPH FUNCTION

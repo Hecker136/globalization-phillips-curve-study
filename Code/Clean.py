@@ -1,73 +1,50 @@
 import pandas as pd
+import numpy as np
 
-# =========================
-# LOAD DATA
-# =========================
+start = 1954
+end = 2026
 
+# LOAD
 cpi = pd.read_csv("C:/phillips_project/Data/Raw/CPIAUCSL.csv")
 unrate = pd.read_csv("C:/phillips_project/Data/Raw/UNRATE.csv")
 imports = pd.read_csv("C:/phillips_project/Data/Raw/IMPGS.csv")
 exports = pd.read_csv("C:/phillips_project/Data/Raw/EXPGS.csv")
 gdp = pd.read_csv("C:/phillips_project/Data/Raw/GDP.csv")
+mich = pd.read_csv("C:/phillips_project/Data/Raw/MICH.csv")
 
-# =========================
-# CLEAN COLUMN NAMES
-# =========================
-
+# RENAME
 cpi.columns = ["DATE", "CPI"]
 unrate.columns = ["DATE", "UNRATE"]
 imports.columns = ["DATE", "IMPORTS"]
 exports.columns = ["DATE", "EXPORTS"]
 gdp.columns = ["DATE", "GDP"]
+mich.columns = ["DATE", "MICH"]
 
-# =========================
-# MERGE DATASETS
-# =========================
+# MERGE
+df = cpi.merge(unrate, on="DATE") \
+        .merge(imports, on="DATE") \
+        .merge(exports, on="DATE") \
+        .merge(gdp, on="DATE") \
+        .merge(mich, on="DATE")
 
-df = cpi.merge(unrate, on="DATE")
-df = df.merge(imports, on="DATE")
-df = df.merge(exports, on="DATE")
-df = df.merge(gdp, on="DATE")
-
-# =========================
-# Normalize year column and convert to datetime
-# =========================
-
+# SORT FIRST (CRITICAL)
 df["DATE"] = pd.to_datetime(df["DATE"])
+df = df.sort_values("DATE").reset_index(drop=True)
 df["year"] = df["DATE"].dt.year
 
-def get_period(start, end):
-    return df[(df["year"] >= start) & (df["year"] < end)][["UNRATE", "INFLATION", "MICH"]].dropna()
+# FILTER FIRST
+df = df[df["year"].between(start, end)].copy()
 
-# =========================
-# CREATE VARIABLES
-# =========================
+# INFLATION
+df["INFLATION"] = np.log(df["CPI"]).diff() * 100
+df["INFLATION_LAGGED"] = df["INFLATION"].shift(1)
 
-# Inflation
-df["INFLATION"] = df["CPI"].pct_change() * 100
-
-# Lagged inflation
-df["INFLATION_LAG"] = df["INFLATION"].shift(1)
-
-# Trade openness
+# TRADE
 df["TRADE"] = df["IMPORTS"] + df["EXPORTS"]
 df["TRADE_GDP"] = df["TRADE"] / df["GDP"] * 100
 
-# Interaction term
-df["UNRATE_x_TRADE"] = df["UNRATE"] * df["TRADE_GDP"]
-
-# Inflation gap (2% target)
-df["INFLATION_GAP"] = df["INFLATION"] - 2
-
-# =========================
-# REMOVE MISSING VALUES
-# =========================
-
+# CLEAN
 df = df.dropna()
-
-# =========================
-# SAVE CLEAN DATA
-# =========================
 
 df.to_csv("C:/phillips_project/data/processed/clean_data.csv", index=False)
 
