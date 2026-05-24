@@ -205,3 +205,15 @@ plot_phillips_curve(
     2026,
     "phillips_curve_2001_2026.png"
 )
+
+plt.plot(df["year"], df["TRADE_GDP"])
+plt.title("Trade Openness (1954-2026)")
+plt.xlabel("Year")
+plt.ylabel("Trade Openness (% of GDP)")
+plt.gcf().autofmt_xdate()
+plt.savefig(
+    "trade_openness_1954_2026.png",
+    dpi=300,
+    bbox_inches="tight"
+)
+plt.show()
