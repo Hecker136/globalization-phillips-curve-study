@@ -39,6 +39,8 @@ def inputs():
 
 input_1, input_2 = inputs()
 
+df["post_wto"] = (df["year"] >= 2001).astype(int)
+
 # -----------------------------
 # FILTER DATA
 # -----------------------------
