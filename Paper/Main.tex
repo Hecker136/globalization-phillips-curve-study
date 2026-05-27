@@ -14,7 +14,7 @@
 
 \section{Abstract}
 
-This paper studies whether globalization and China joining the WTO in particular weakens the Phillips Curve relationship in the United States. The first model includes unemployment, trade openness, interaction effects, and lagged inflation measured against inflation. Ordinary Least Squares (OLS) regression is used to estimate the inflation dynamics. The second model uses China's accession into the WTO for a structural break. The model uses 3 variables: unemployment, Post WTO (the immediate drop in inflation following China joining the WTO) and POST UNRATE (The change in slope of the Phillips Curve after China joined the WTO). The final model drops the lagged inflation and replaces inflation with the inflation gap ($\pi-\overline{\pi}$).The results suggest that inflation is highly persistent and that globalization weakens the relationship between unemployment and inflation. The Phillips Curve remains present in the United States, but globalization weakens the relationship between unemployment and inflation. However, once the inflation gap is accounted for, the globalization effect becomes substantially weaker, suggesting that globalization primarily influences inflation through inflation persistence. Also while the Phillips Curve steepened in 2001 this could be due to the 2001 dot-com bust and subsequent recession. These findings are consistent with theories that the Phillips Curve has structurally changed after China joined the WTO due to a more globalized economy. 
+This paper studies whether globalization and China joining the WTO in particular weakens the Phillips Curve relationship in the United States, and how the Phillips Curve evolved over time using different measures for inflation. The first model includes unemployment, trade openness, interaction effects, and lagged inflation measured against inflation. Ordinary Least Squares (OLS) regression is used to estimate the inflation dynamics. The second model uses China's accession into the WTO for a structural break. The model uses 3 variables: unemployment, Post WTO (the immediate drop in inflation following China joining the WTO) and POST UNRATE (The change in slope of the Phillips Curve after China joined the WTO). The final model drops the lagged inflation and replaces inflation with the inflation gap ($\pi-\overline{\pi}$).The results suggest that inflation is highly persistent and that globalization weakens the relationship between unemployment and inflation. The Phillips Curve remains present in the United States, but globalization weakens the relationship between unemployment and inflation. However, once the inflation gap is accounted for, the globalization effect becomes substantially weaker, suggesting that globalization primarily influences inflation through inflation persistence. Also while the Phillips Curve steepened in 2001 this could be due to the 2001 dot-com bust and subsequent recession. These findings are consistent with theories that the Phillips Curve has structurally changed after China joined the WTO due to a more globalized economy. 
 
 \section{Introduction}
 
@@ -80,21 +80,21 @@ Variable & Coefficient\_1 & P-value\_1 & Coefficient\_2 & P-value\_2 \\
 \hline
 UNRATE & -0.267 & \textbf{0.002} & -0.107 & \textbf{0.002}\\
 TRADE & 0.012 & 0.343 & 0.037 & \ 0.250\\
-Interaction & 0.023 & \textbf{0.000} & -0.002 & 0.831 \\
-Lagged Inflation & 1.017 & \textbf{0.000} & 0.961 & \textbf{0.000}\\
+Interaction & 0.023 & \textbf{<0.01} & -0.002 & 0.831 \\
+Lagged Inflation & 1.017 & \textbf{<0.01} & 0.961 & \textbf{<0.01}\\
 Post WTO &  -2.191  &  0.096  &  N/A  & N/A\\
-Post UNRATE &  -2.731  &  \textbf{0.000}  & N/A &  N/A \\
+Post UNRATE &  -2.731  &  \textbf{<0.01}  & N/A &  N/A \\
 \hline
 \end{tabular}
 \caption{Regression Results}
 \end{table}
 
 \subsection{The normal Phillips Curve (with trade to GDP and interaction term) from 1954 to 2026}
-The unemployment is negative and statistically significant, meaningly that the Phillips Curve does still exist but maybe just weaker. The lagged inflation is very close to 1 and has a p-value less than 0.05 meaning inflation is very dependent on inflation from the past. The trade term is positive but not statistically significant so that term can be ignored. The trade times unemployment rate though yielded good results. The interaction term is positive meaning globalization does flatten the Phillips Curve, and the p-value is 0 meaning it is statistically significant. 
+The unemployment is negative and statistically significant, meaningly that the Phillips Curve does still exist but maybe just weaker. The lagged inflation is very close to 1 and has a p-value less than 0.05 meaning inflation is very dependent on inflation from the past. The trade term is positive but not statistically significant so that term can be ignored. The trade times unemployment rate though yielded economically meaningful results. The interaction term is positive meaning globalization does flatten the Phillips Curve, and the p-value is less than 0.01 meaning it is statistically significant. 
 \subsection{The before and after China joined WTO}
 In model 2 (the last two rows) there are interesting results. In model 2 only Post UNRATE is significant. It has a 0 p value and a coefficient of -2.731. Which means that the Phillips Curve strengthened after 2001. Likely due to the oil shocks in the mid 1970's causing inflation and unemployment to increase throwing off the OLS regression model. Though Post WTO is not significant it is not by much and the -2.191 means a possible drop in inflation after China joined the WTO in 2001.
 \subsection{Inflation gap model}
-However, In model 3 some of the variables are statistically insignificant. The reason for this is once the inflation gap is accounted for all that is left is the short-term trends which makes unemployment harder to track. Once the long-term movement is removed the pattern is very cyclical and could cause the model to break and/or not function and give bad results. Luckily the unemployment rate stays significant with a negative coefficient and significant p-value. Along with the lagged inflation which acted just like it did in the other model.
+However, In model 3 some of the variables are statistically insignificant. The reason for this is once the inflation gap is accounted for all that is left is the short-term trends which makes unemployment harder to track. Once the long-term movement is removed the pattern is very cyclical and could cause the model to not function and give results with weaker explanatory power. Luckily the unemployment rate stays significant with a negative coefficient and significant p-value. Along with the lagged inflation which acted just like it did in the other model.
 
 \subsection{Structural Change in the Phillips Curve}
 
@@ -127,7 +127,7 @@ Above are 2 graphs are showing the Phillips Curve relationship in two periods. 1
 \section{Diagnostics and Limitations}
 \subsection{Diagnostics}
 
-I ran three diagnostic tests. A QQ plot, residuals histogram and a residuals vs fitted diagram. These 3 tests test for the normality and linearity in the model. All three plots came back successful, proving the data is normal and linear. The first one is the QQ plot:
+I ran three diagnostic tests. A QQ plot, residuals histogram and a residuals vs fitted diagram. These 3 tests test for the normality and linearity in the model. All three plots came back successful, suggesting the data is normal and linear. The first one is the QQ plot:
 
 \begin{figure}[H]
     \centering
@@ -173,7 +173,7 @@ This image shows the residuals vs the fitted values. The dots indicate what the 
 \\
 \\
 \subsection{Limitations}
-Unfortunately there are also limitations. There are missing variables such as expectations for unemployment and inflation. Along with monetary and fiscal policy which could alter the Phillips Curve. There could be omitted variable bias which is when there are variables that are not in a model but affect the models. The economy also structurally changes over time which could affect the Phillips Curve. This is also only a simplified model of the economy, this model doesn't take in enough factors to better represent the economy. The trade to GDP doesn't take into account re-exports which could artificially boosting the trade to GDP number. Using a dummy variable could also hide certain long-term trend affecting the data. Using the dates from 2001-2026 could be skewed due to the 3 recessions and the inflation spike in the aftermath of COVID-19.
+Unfortunately there are also limitations. There are missing variables such as expectations for unemployment and inflation. Along with monetary and fiscal policy which could alter the Phillips Curve. There could be omitted variable bias which is when there are variables that are not in a model but affect the models. Endogeneity is when two variables effect each other and it is impossible to tell which affect the other. Endogeneity is present in this paper because of the core relationship between inflation and unemployment that is getting studied..The economy also structurally changes over time which could affect the Phillips Curve. This is also only a simplified model of the economy, this model doesn't take in enough factors to better represent the economy. The trade to GDP doesn't take into account re-exports which could artificially boosting the trade to GDP number. Using a dummy variable could also hide certain long-term trend affecting the data. Using the dates from 2001-2026 could be skewed due to the 3 recessions and the inflation spike in the aftermath of COVID-19.
 
 \section{Discussion}
 
@@ -181,7 +181,7 @@ Looking at the data paints a picture of a Phillips Curve that has revived in cer
 
 \section{Conclusion}
 
-Inflation is persistent and is heavily reliant on the inflation of the past. Unemployment still matters in the Phillips Curve but less than in the past. Likely because trade openness can flatten the Phillips Curve making unemployment and inflation be less intertwined. Globalization weakens the Phillips Curve due to inflation being more global and expectation-driven compared to the past. China's accession into the WTO caused inflation to drop and the Phillips Curve to become stronger vs the past. Causing inflation to drop and likely unemployment to rise as firms hire more overseas. When taking the inflation gap into account the interaction term is no longer significant and certain variables become weaker.
+In the United States, The accession of China into the WTO, Causes a structural break in the Phillips Curve relationship. The Phillips Curve changes throughout different time "regimes" using different ways to measure inflation. The finding were, China possibly caused a drop in inflation and a strengthening in the Phillips Curve after they joined the WTO. The Phillips Curve is still around but has been flattened and strengthened throughout different time periods. This could be interpreted as firms hiring more over seas, raising unemployment. Firms would also be using cheaper goods lowering inflation. In the two models not using China's rise, inflation was heavily dependent on lagged inflation. The broader macro meaning is when firms can offshore hiring for cheaper costs, inflation declines as international supply rises and domestic demand declines lowering domestic prices and raising domestic unemployment. This research could be continued by looking at the Phillips Curve in different time periods and different countries.
 
 \begin{thebibliography}{9}
 
