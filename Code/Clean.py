@@ -33,7 +33,7 @@ df["year"] = df["DATE"].dt.year
 df = df[df["year"].between(start, end)].copy()
 
 # INFLATION
-df["INFLATION"] = np.log(df["CPI"]).diff() * 100
+df["INFLATION"] = df["CPI"].pct_change(12) * 100
 df["INFLATION_LAGGED"] = df["INFLATION"].shift(1)
 
 # TRADE
