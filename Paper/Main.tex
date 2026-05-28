@@ -74,19 +74,46 @@ Where $\pi_t$ is the current inflation, $\pi^e_t$ are the current expectations o
 
 \begin{table}[H]
 \centering
-\begin{tabular}{|c|c|c|c|c|}
+\begin{tabular}{|c|c|c|c|}
 \hline
-Variable & Coefficient\_1 & P-value\_1 & Coefficient\_2 & P-value\_2 \\
+Variable & Coefficient & P-value & Std Err \\
 \hline
-UNRATE & -0.267 & \textbf{0.002} & -0.107 & \textbf{0.002}\\
-TRADE & 0.012 & 0.343 & 0.037 & \ 0.250\\
-Interaction & 0.023 & \textbf{<0.01} & -0.002 & 0.831 \\
-Lagged Inflation & 1.017 & \textbf{<0.01} & 0.961 & \textbf{<0.01}\\
-Post WTO &  -2.191  &  0.096  &  N/A  & N/A\\
-Post UNRATE &  -2.731  &  \textbf{<0.01}  & N/A &  N/A \\
+UNRATE & -0.267 & \   $<0.01$ & 0.086 \\
+TRADE & 0.012 & 0.343 & 0.012\\
+Interaction & 0.023 &    $<0.01$ & 0.010 \\
+Lagged Inflation & 1.017 &    $<0.01$ & 0.020 \\
 \hline
 \end{tabular}
-\caption{Regression Results}
+\caption{Regression Results for Model 1 ($R^2$ = .983)}
+\end{table}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline
+Variable & Coefficient & P-value & Std Err \\
+\hline
+UNRATE & -0.267 &    $<0.01$ & 0.330\\
+Post WTO &  -2.191  &  0.096  &  1.315\\
+Post UNRATE &  -2.731  &   $<0.01$  & 0.534\\
+\hline
+\end{tabular}
+\caption{Regression Results for Model 2 ($R^2$ = .305)}
+\end{table}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline
+Variable & Coefficient & P-value & Std Err \\
+\hline
+UNRATE & -0.267 &    $<0.01$ & 0.035\\
+TRADE & 0.012 & 0.343 & 0.032\\
+Interaction & 0.023 &    $<0.01$ & 0.011\\
+Lagged Inflation & 1.017 &    $<0.01$ & 0.028\\
+\hline
+\end{tabular}
+\caption{Regression Results for Model 3 ($R^2$ = .940)}
 \end{table}
 
 \subsection{The normal Phillips Curve (with trade to GDP and interaction term) from 1954 to 2026}
@@ -188,7 +215,12 @@ In the United States, The accession of China into the WTO, Causes a structural b
 \bibitem{fed}
 Federal Reserve Economic Data.
 "CPIAUCSL, UNRATE, MICH, GDP, IMPGS, EXPGS"
-
+\bibitem{fed}
+"International Journal of Central Banking"
+\bibitem{fed}
+"Science Direct"
+\bibitem{fed}
+"Becker Friedman Institute"
 \end{thebibliography}
 
 \end{document}
