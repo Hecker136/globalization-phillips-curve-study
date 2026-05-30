@@ -62,7 +62,7 @@ X = sm.add_constant(X)
 
 y = df["INFLATION"]
 
-model = sm.OLS(y, X).fit(cov_type="HAC", cov_kwds={"maxlags": 12})
+model = sm.OLS(y, X).fit(cov_type="HAC", cov_kwds={"maxlags": 2})
 print(model.summary())
 
 adf_result = adfuller(model.resid)
