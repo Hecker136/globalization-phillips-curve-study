@@ -53,7 +53,11 @@ df["UNRATE_c"] = df["UNRATE"] - df["UNRATE"].mean()
 
 df["UNRATE_post"] = df["UNRATE_c"] * df["post_wto"]
 
-X = df[["UNRATE_c", "post_wto", "UNRATE_post"]]
+df["LAGGED_INFLATION"] = df["INFLATION"].shift(1)
+
+df = df.dropna()
+
+X = df[["UNRATE_c", "post_wto", "UNRATE_post","LAGGED_INFLATION"]]
 X = sm.add_constant(X)
 
 y = df["INFLATION"]
