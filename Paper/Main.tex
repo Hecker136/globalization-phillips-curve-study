@@ -14,7 +14,7 @@
 
 \section{Abstract}
 
-This paper studies whether globalization and China joining the WTO in particular weakens the Phillips Curve relationship in the United States, and how the Phillips Curve evolved over time using different measures for inflation. The first model includes unemployment, trade openness, interaction effects, and lagged inflation measured against inflation. Ordinary Least Squares (OLS) regression is used to estimate the inflation dynamics. The second model uses China's accession into the WTO for a structural break. The model uses 3 variables: unemployment, Post WTO (the immediate drop in inflation following China joining the WTO) and POST UNRATE (The change in slope of the Phillips Curve after China joined the WTO). The final model drops the lagged inflation and replaces inflation with the inflation gap ($\pi-\overline{\pi}$).The results suggest that inflation is highly persistent and that globalization weakens the relationship between unemployment and inflation. The Phillips Curve remains present in the United States, but globalization weakens the relationship between unemployment and inflation. However, once the inflation gap is accounted for, the globalization effect becomes substantially weaker, suggesting that globalization primarily influences inflation through inflation persistence. Also while the Phillips Curve steepened in 2001 this could be due to the 2001 dot-com bust and subsequent recession. These findings are consistent with theories that the Phillips Curve has structurally changed after China joined the WTO due to a more globalized economy. 
+This paper studies whether globalization and China joining the WTO in particular weakens the Phillips Curve relationship in the United States, and how the Phillips Curve evolved over time using different measures for inflation. The first model includes unemployment, trade openness, interaction effects, and lagged inflation. Ordinary Least Squares (OLS) regression is used to estimate the inflation dynamics. The second model uses China's accession into the WTO for a structural break. The model uses 4 variables: unemployment, Post WTO (the immediate drop in inflation following China joining the WTO) and POST UNRATE (The change in slope of the Phillips Curve after China joined the WTO) and lagged inflation. The final model replaces inflation with the inflation gap ($\pi-\overline{\pi}$).The results suggest that inflation is highly persistent and that globalization weakens the relationship between unemployment and inflation. The Phillips Curve remains present in the United States, but globalization weakens the relationship between unemployment and inflation. However, once the inflation gap is accounted for, the globalization effect becomes substantially weaker, suggesting that globalization primarily influences inflation through inflation persistence. Finally in one of the models all of the useful variables had p-values above 0.5 rendering them useless. These findings are consistent with theories that the Phillips Curve has structurally changed after China joined the WTO due to a more globalized economy. 
 
 \section{Introduction}
 
@@ -61,15 +61,15 @@ The equation for the second model is:
 \begin{align*}
 \text{Inflation}_t =
 & \ \beta_0 + \beta_1 \text{Unemployment}_t + \beta_2 \text{Post UNRATE}_t \\
-& + \beta_3 \text{Post WTO}_t + \varepsilon_t
+& + \beta_3 \text{Post WTO}_t + \text{Inflation}_{t-1} + \varepsilon_t
 \end{align*}
 The equation for the third model is:
 \begin{align*}
 \text{Inflation Gap}_t =
 & \ \beta_0 + \beta_1 \text{Unemployment}_t + \beta_2 \text{Trade}_t \\
-& + \beta_3 \text{Interaction}_t + \varepsilon_t
+& + \beta_3 \text{Interaction}_t + \text{Inflation}_{t-1} + \varepsilon_t
 \end{align*}
-Where $\pi_t$ is the current inflation, $\pi^e_t$ are the current expectations of inflation. This equation uses the betas as coefficients to measure the line of best fit. Each variable is multiplied by its beta and then the error is added to try to estimate the inflation or inflation gap ($\pi_t-\pi_t^e$).
+Where $\pi_t$ is the current inflation, $\pi^e_t$ are the current expectations of inflation. This equation uses the betas as coefficients to measure the line of best fit. Each variable is multiplied by its beta and then the error is added to try to estimate the inflation or inflation gap ($\pi_t-\overline{\pi}$).
 \section{Results}
 
 \begin{table}[H]
@@ -78,13 +78,13 @@ Where $\pi_t$ is the current inflation, $\pi^e_t$ are the current expectations o
 \hline
 Variable & Coefficient & P-value & Std Err \\
 \hline
-UNRATE & -0.267 & \   $<0.01$ & 0.086 \\
-TRADE & 0.012 & 0.343 & 0.012\\
-Interaction & 0.023 &    $<0.01$ & 0.010 \\
-Lagged Inflation & 1.017 &    $<0.01$ & 0.020 \\
+UNRATE & -0.267 & $<0.01$ & 0.067 \\
+TRADE & 0.012 & 0.296 & 0.011\\
+Interaction & 0.023 & $<0.01$ & 0.008 \\
+Lagged Inflation & 1.017 & $<0.01$ & 0.016 \\
 \hline
 \end{tabular}
-\caption{Regression Results for Model 1 ($R^2$ = .983)}
+\caption{Regression Results for Model 1}
 \end{table}
 
 \begin{table}[H]
@@ -93,12 +93,13 @@ Lagged Inflation & 1.017 &    $<0.01$ & 0.020 \\
 \hline
 Variable & Coefficient & P-value & Std Err \\
 \hline
-UNRATE & -0.267 &    $<0.01$ & 0.330\\
-Post WTO &  -2.191  &  0.096  &  1.315\\
-Post UNRATE &  -2.731  &   $<0.01$  & 0.534\\
+UNRATE & -0.059 & 0.558 & 0.100\\
+Post WTO & 0.065 & 0.730 & 0.188\\
+Post UNRATE & -0.060 & 0.599 & 0.115\\
+Lagged Inflation & 0.946 & $<0.01$ & 0.035\\
 \hline
 \end{tabular}
-\caption{Regression Results for Model 2 ($R^2$ = .305)}
+\caption{Regression Results for Model 2}
 \end{table}
 
 \begin{table}[H]
@@ -107,21 +108,37 @@ Post UNRATE &  -2.731  &   $<0.01$  & 0.534\\
 \hline
 Variable & Coefficient & P-value & Std Err \\
 \hline
-UNRATE & -0.267 &    $<0.01$ & 0.035\\
-TRADE & 0.012 & 0.343 & 0.032\\
-Interaction & 0.023 &    $<0.01$ & 0.011\\
-Lagged Inflation & 1.017 &    $<0.01$ & 0.028\\
+UNRATE & -0.107 & 0.01 & 0.041\\
+TRADE & 0.037 & 0.239 & 0.031\\
+Interaction & -0.002 & 0.848 & 0.013\\
+Lagged Inflation & 0.961 & $<0.01$ & 0.030\\
 \hline
 \end{tabular}
-\caption{Regression Results for Model 3 ($R^2$ = .940)}
+\caption{Regression Results for Model 3}
 \end{table}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline
+Model & $R^2$ & Durbin-Watson & Cond. No. \\
+\hline
+Model 1 & 0.983 & 1.187 & 28.2\\
+Model 2 & 0.940 & 1.478 & 40.5\\
+Model 3 & 0.940 & 1.503 & 6.74\\
+\hline
+\end{tabular}
+\caption{Results for the models}
+\end{table}
+
+The results for the final table suggest that most of the data is overall correct but some p-values are too high to be used. Adding lagged inflation increases the r squared and the Durbin-Watson, but also removes the noise that the variables used to absorb leaving a more cyclical pattern that raises p-values. Overall though besides the second model which used a different model and caused higher unusable p-values. The models overall have pretty good results and can be trusted.
 
 \subsection{The normal Phillips Curve (with trade to GDP and interaction term) from 1954 to 2026}
 The unemployment is negative and statistically significant, meaningly that the Phillips Curve does still exist but maybe just weaker. The lagged inflation is very close to 1 and has a p-value less than 0.05 meaning inflation is very dependent on inflation from the past. The trade term is positive but not statistically significant so that term can be ignored. The trade times unemployment rate though yielded economically meaningful results. The interaction term is positive meaning globalization does flatten the Phillips Curve, and the p-value is less than 0.01 meaning it is statistically significant. 
 \subsection{The before and after China joined WTO}
 In model 2 (the last two rows) there are interesting results. In model 2 only Post UNRATE is significant. It has a 0 p value and a coefficient of -2.731. Which means that the Phillips Curve strengthened after 2001. Likely due to the oil shocks in the mid 1970's causing inflation and unemployment to increase throwing off the OLS regression model. Though Post WTO is not significant it is not by much and the -2.191 means a possible drop in inflation after China joined the WTO in 2001.
 \subsection{Inflation gap model}
-However, In model 3 some of the variables are statistically insignificant. The reason for this is once the inflation gap is accounted for all that is left is the short-term trends which makes unemployment harder to track. Once the long-term movement is removed the pattern is very cyclical and could cause the model to not function and give results with weaker explanatory power. Luckily the unemployment rate stays significant with a negative coefficient and significant p-value. Along with the lagged inflation which acted just like it did in the other model.
+However, In model 3 most of the variables are statistically insignificant. The reason for this is once the inflation gap is accounted for all that is left is the short-term trends which makes unemployment harder to track. Once the long-term movement is removed the pattern is very cyclical and could cause the model to not function and give results with weaker explanatory power. Luckily the unemployment rate stays significant with a negative coefficient and significant p-value. Along with the lagged inflation which acted just like it did in the other model.
 
 \subsection{Structural Change in the Phillips Curve}
 
@@ -215,11 +232,11 @@ In the United States, The accession of China into the WTO, Causes a structural b
 \bibitem{fed}
 Federal Reserve Economic Data.
 "CPIAUCSL, UNRATE, MICH, GDP, IMPGS, EXPGS"
-\bibitem{fed}
+\bibitem{IJCB}
 "International Journal of Central Banking"
-\bibitem{fed}
+\bibitem{Science}
 "Science Direct"
-\bibitem{fed}
+\bibitem{Institute}
 "Becker Friedman Institute"
 \end{thebibliography}
 
