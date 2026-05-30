@@ -49,15 +49,12 @@ df = df[df["year"].between(input_1, input_2)].copy()
 # -----------------------------
 # CREATE VARIABLES
 # -----------------------------
-df["UNRATE_c"] = df["UNRATE"] - df["UNRATE"].mean()
 
 df["UNRATE_post"] = df["UNRATE_c"] * df["post_wto"]
 
-df["LAGGED_INFLATION"] = df["INFLATION"].shift(1)
-
 df = df.dropna()
 
-X = df[["UNRATE_c", "post_wto", "UNRATE_post","LAGGED_INFLATION"]]
+X = df[["UNRATE_c", "post_wto", "UNRATE_post","INFLATION_LAGGED"]]
 X = sm.add_constant(X)
 
 y = df["INFLATION"]

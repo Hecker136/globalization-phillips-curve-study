@@ -39,31 +39,7 @@ def inputs():
 
 input_1, input_2 = inputs()
 
-df["post_wto"] = (df["year"] >= 2001).astype(int)
-
-# -----------------------------
-# FILTER DATA
-# -----------------------------
 df = df[df["year"].between(input_1, input_2)].copy()
-
-# -----------------------------
-# CREATE VARIABLES
-# -----------------------------
-df["UNRATE_c"] = df["UNRATE"] - df["UNRATE"].mean()
-
-df["TRADE_GDP_c"] = (
-    df["TRADE_GDP"] - df["TRADE_GDP"].mean()
-)
-
-df["UNRATE_x_TRADE"] = (
-    df["UNRATE_c"] * df["TRADE_GDP_c"]
-)
-
-df["INFLATION_LAGGED"] = (
-    df["INFLATION"].shift(1)
-)
-
-df = df.dropna()
 
 # -----------------------------
 # REGRESSION

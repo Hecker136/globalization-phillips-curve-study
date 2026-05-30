@@ -40,7 +40,23 @@ df["INFLATION_LAGGED"] = df["INFLATION"].shift(1)
 df["TRADE"] = df["IMPORTS"] + df["EXPORTS"]
 df["TRADE_GDP"] = df["TRADE"] / df["GDP"] * 100
 
-# CLEAN
+# -----------------------------
+# CREATE VARIABLES
+# -----------------------------
+df["UNRATE_c"] = df["UNRATE"] - df["UNRATE"].mean()
+
+df["TRADE_GDP_c"] = (
+    df["TRADE_GDP"] - df["TRADE_GDP"].mean()
+)
+
+df["UNRATE_x_TRADE"] = (
+    df["UNRATE_c"] * df["TRADE_GDP_c"]
+)
+
+df["INFLATION_LAGGED"] = (
+    df["INFLATION"].shift(1)
+)
+
 df = df.dropna()
 
 df.to_csv("C:/phillips_project/data/processed/clean_data.csv", index=False)
